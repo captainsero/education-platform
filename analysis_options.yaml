@@ -1,0 +1,39 @@
+# Import the industry-standard strict lint rules
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  # Enforce strict type safety to prevent runtime crashes
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
+  # Exclude generated code to speed up the analyzer and ignore irrelevant warnings
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.mocks.dart"
+    - "lib/generated_plugin_registrant.dart"
+    - "lib/generated/**"
+    - "build/**"
+
+  # Elevate critical architectural warnings into hard compilation errors
+  errors:
+    missing_required_param: error
+    missing_return: error
+    invalid_annotation_target: ignore # Often required for code generators like Freezed
+
+linter:
+  rules:
+    # Pragmatic Overrides:
+    # 'very_good_analysis' is exceptionally strict. Enterprise teams typically 
+    # adjust a few rules to balance safety with developer velocity.
+
+    # Disables the requirement to write a doc-comment for every public variable/class.
+    # (Turn this back to 'true' if you are building a public package for pub.dev).
+    public_member_api_docs: false
+
+    # Enforces relative imports for files within your own `lib` folder. 
+    # This makes renaming folders and moving files significantly easier.
+    always_use_package_imports: false
+    prefer_relative_imports: true
