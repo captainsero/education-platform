@@ -10,12 +10,12 @@ analyzer:
 
   # Exclude generated code to speed up the analyzer and ignore irrelevant warnings
   exclude:
-    - "**/*.g.dart"
-    - "**/*.freezed.dart"
-    - "**/*.mocks.dart"
-    - "lib/generated_plugin_registrant.dart"
-    - "lib/generated/**"
-    - "build/**"
+  - "**/*.g.dart"
+  - "**/*.freezed.dart"
+  - "**/*.mocks.dart"
+  - "lib/generated_plugin_registrant.dart"
+  - "lib/generated/**"
+  - "build/**"
 
   # Elevate critical architectural warnings into hard compilation errors
   errors:
@@ -37,3 +37,4 @@ linter:
     # This makes renaming folders and moving files significantly easier.
     always_use_package_imports: false
     prefer_relative_imports: true
+    avoid_catches_without_on_clauses: false
