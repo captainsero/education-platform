@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'config/di/di.dart';
+import 'config/supabase/supabase_config.dart';
 import 'core/constants/screen_size.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
@@ -8,6 +9,7 @@ import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SupabaseConfig.initialize();
   await configureDependencies();
 
   runApp(const MyApp());

@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../config/services/secure_storage/secure_storage_service.dart';
 
@@ -11,9 +12,73 @@ sealed class AppError {
 
   factory AppError.from(Object? error) {
     if (error is AppError) return error;
-    if (error is DioException) {
-      final data = error.response?.data;
 
+    // --- Postgrest (database) errors ---
+    if (error is PostgrestException) {
+      final code = error.code;
+
+      // Postgres error codes: https://www.postgresql.org/docs/current/errcodes-appendix.html
+      switch (code) {
+        case '23505': // unique_violation
+          return ApiMessageError(
+            error.message.isNotEmpty
+                ? error.message
+                : 'This record already exists.',
+          );
+        case '23503': // foreign_key_violation
+          return ApiMessageError(
+            error.message.isNotEmpty
+                ? error.message
+                : 'Related record not found.',
+          );
+        case '42501': // insufficient_privilege (RLS denied)
+          return const PermissionDenied();
+        case 'PGRST116': // no rows found for .single()
+          return const NotFoundError();
+      }
+
+      // PostgREST HTTP-style status codes surfaced via error.code as a string
+      final statusCode = int.tryParse(code ?? '');
+      if (statusCode != null && statusCode >= 500) {
+        return ServerError(statusCode);
+      }
+
+      if (error.message.isNotEmpty) return ApiMessageError(error.message);
+      return const UnknownError();
+    }
+
+    // --- Auth errors ---
+    if (error is AuthException) {
+      final statusCode = int.tryParse(error.statusCode ?? '');
+      if (statusCode != null && statusCode >= 500) {
+        return ServerError(statusCode);
+      }
+      if (statusCode == 403 ||
+          error.message.toLowerCase().contains('permission')) {
+        return const PermissionDenied();
+      }
+      if (error.message.isNotEmpty) return ApiMessageError(error.message);
+      return const UnknownError();
+    }
+
+    if (error is AuthRetryableFetchException) {
+      return const NetworkError();
+    }
+
+    // --- Storage (file upload/download) errors ---
+    if (error is StorageException) {
+      final statusCode = int.tryParse(error.statusCode ?? '');
+      if (statusCode == 404) return const NotFoundError();
+      if (statusCode != null && statusCode >= 500) {
+        return ServerError(statusCode);
+      }
+      if (error.message.isNotEmpty) return ApiMessageError(error.message);
+      return const UnknownError();
+    }
+
+    // --- Edge Function errors ---
+    if (error is FunctionException) {
+      final data = error.details;
       String? apiMessage;
 
       if (data is Map<String, dynamic>) {
@@ -30,29 +95,13 @@ sealed class AppError {
       if (apiMessage != null && apiMessage.isNotEmpty) {
         return ApiMessageError(apiMessage);
       }
-
-      switch (error.type) {
-        case DioExceptionType.connectionTimeout:
-        case DioExceptionType.sendTimeout:
-        case DioExceptionType.receiveTimeout:
-          return const ConnectionTimeoutError();
-
-        case DioExceptionType.badResponse:
-          final statusCode = error.response?.statusCode ?? 0;
-          if (statusCode >= 500) return ServerError(statusCode);
-          if (statusCode == 404) return const NotFoundError();
-          return const UnknownError();
-
-        case DioExceptionType.unknown:
-          return const NetworkError();
-
-        case DioExceptionType.cancel:
-        case DioExceptionType.badCertificate:
-        case DioExceptionType.connectionError:
-        case DioExceptionType.transformTimeout:
-          return const UnknownError();
-      }
+      if (error.status >= 500) return ServerError(error.status);
+      if (error.status == 404) return const NotFoundError();
+      return const UnknownError();
     }
+
+    // --- Raw network-level failures (no internet, DNS failure, etc.) ---
+    if (error is SocketException) return const NetworkError();
 
     if (error is TimeoutException) return const RequestTimeoutError();
 
