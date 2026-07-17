@@ -10,3 +10,5 @@ class SignInEvent extends AuthEvent {
 }
 
 class SignOutEvent extends AuthEvent {}
+
+class TogglePasswordVisibilityEvent extends AuthEvent {}

@@ -16,19 +16,23 @@ import 'auth_state.dart';
 @injectable
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit({
-    required this.authStateChangesUseCase,
-    required this.getCurrentUserUseCase,
-    required this.signInUseCase,
-    required this.signOutUseCase,
-  }) : super(const AuthState()) {
-    _authStateSubscription = authStateChangesUseCase().listen(
+    required AuthStateChangesUseCase authStateChangesUseCase,
+    required GetCurrentUserUseCase getCurrentUserUseCase,
+    required SignInUseCase signInUseCase,
+    required SignOutUseCase signOutUseCase,
+  }) : _authStateChangesUseCase = authStateChangesUseCase,
+       _getCurrentUserUseCase = getCurrentUserUseCase,
+       _signInUseCase = signInUseCase,
+       _signOutUseCase = signOutUseCase,
+       super(const AuthState()) {
+    _authStateSubscription = _authStateChangesUseCase().listen(
       _onAuthStateChanged,
     );
   }
-  final AuthStateChangesUseCase authStateChangesUseCase;
-  final GetCurrentUserUseCase getCurrentUserUseCase;
-  final SignInUseCase signInUseCase;
-  final SignOutUseCase signOutUseCase;
+  final AuthStateChangesUseCase _authStateChangesUseCase;
+  final GetCurrentUserUseCase _getCurrentUserUseCase;
+  final SignInUseCase _signInUseCase;
+  final SignOutUseCase _signOutUseCase;
 
   StreamSubscription<UserEntity?>? _authStateSubscription;
 
@@ -48,13 +52,15 @@ class AuthCubit extends Cubit<AuthState> {
         await _signIn(email: event.email, password: event.password);
       case SignOutEvent():
         await _signOut();
+      case TogglePasswordVisibilityEvent():
+        _togglePasswordVisibility();
     }
   }
 
   Future<void> _getCurrentUser() async {
     emit(state.copyWith(getCurrentUserState: const BaseState(isLoading: true)));
 
-    final response = await getCurrentUserUseCase();
+    final response = await _getCurrentUserUseCase();
     final handler = ResponseToStateMapper.handle(response);
 
     emit(state.copyWith(getCurrentUserState: handler));
@@ -66,7 +72,7 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     emit(state.copyWith(signInState: const BaseState(isLoading: true)));
 
-    final response = await signInUseCase(email: email, password: password);
+    final response = await _signInUseCase(email: email, password: password);
     final handler = ResponseToStateMapper.handle(response);
 
     emit(state.copyWith(signInState: handler));
@@ -75,10 +81,14 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> _signOut() async {
     emit(state.copyWith(signOutState: const BaseState(isLoading: true)));
 
-    final response = await signOutUseCase();
+    final response = await _signOutUseCase();
     final handler = ResponseToStateMapper.handle(response);
 
     emit(state.copyWith(signOutState: handler));
+  }
+
+  void _togglePasswordVisibility() {
+    emit(state.copyWith(isPasswordVisibale: !state.isPasswordVisibale));
   }
 
   @override

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/screen_size.dart';
 import '../../../../core/constants/values_manager.dart';
 import '../../../../generated/l10n.dart';
+import '../view_model/auth_cubit.dart';
+import '../view_model/auth_event.dart';
+import '../view_model/auth_state.dart';
 
 class AuthView extends StatelessWidget {
-  const AuthView({super.key});
+  AuthView({super.key});
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +78,7 @@ class AuthView extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     TextField(
+                      controller: emailController,
                       decoration: InputDecoration(hintText: S.current.email),
                     ),
 
@@ -82,14 +90,28 @@ class AuthView extends StatelessWidget {
                       S.current.password,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: S.current.password,
-                        suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.visibility_outlined),
-                        ),
-                      ),
+                    BlocBuilder<AuthCubit, AuthState>(
+                      buildWhen: (previous, current) =>
+                          previous.isPasswordVisibale !=
+                          current.isPasswordVisibale,
+                      builder: (context, state) {
+                        return TextField(
+                          controller: passwordController,
+                          obscureText: state.isPasswordVisibale,
+                          obscuringCharacter: '^',
+                          decoration: InputDecoration(
+                            hintText: S.current.password,
+                            suffixIcon: IconButton(
+                              onPressed: () => context
+                                  .read<AuthCubit>()
+                                  .onEvent(TogglePasswordVisibilityEvent()),
+                              icon: state.isPasswordVisibale
+                                  ? const Icon(Icons.visibility_outlined)
+                                  : const Icon(Icons.visibility_off_outlined),
+                            ),
+                          ),
+                        );
+                      },
                     ),
 
                     const SizedBox(
@@ -98,9 +120,46 @@ class AuthView extends StatelessWidget {
 
                     SizedBox(
                       width: .infinity,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text(S.current.singIn),
+                      child: BlocConsumer<AuthCubit, AuthState>(
+                        listenWhen: (previous, current) =>
+                            previous.signInState != current.signInState,
+                        listener: (context, state) {
+                          if (state.signInState.data != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Sign in successfully'),
+                              ),
+                            );
+                          }
+
+                          if (state.signInState.errorMessage != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  state.signInState.errorMessage ?? '',
+                                ),
+                              ),
+                            );
+                          }
+                        },
+
+                        buildWhen: (previous, current) =>
+                            previous.signInState != current.signInState,
+                        builder: (context, state) {
+                          final isLoading =
+                              state.signInState.isLoading ?? false;
+                          return ElevatedButton(
+                            onPressed: () => context.read<AuthCubit>().onEvent(
+                              SignInEvent(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              ),
+                            ),
+                            child: isLoading
+                                ? const CircularProgressIndicator()
+                                : Text(S.current.singIn),
+                          );
+                        },
                       ),
                     ),
                   ],
