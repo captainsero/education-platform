@@ -129,18 +129,20 @@ ThemeData lightTheme = ThemeData(
       disabledBackgroundColor: AppColors.neutral300,
       disabledForegroundColor: AppColors.neutral500,
       padding: const EdgeInsets.all(AppPadding.p16),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(RadiusSize.r16),
+      ),
       textStyle: getMediumStyle(
         fontFamily: FontConstants.balooThambi2,
         color: AppColors.white,
-        fontSize: FontSize.s16,
+        fontSize: FontSize.s18,
       ),
     ),
   ),
 
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: AppColors.neutral50,
+    fillColor: AppColors.white,
     hintStyle: const TextStyle(
       color: AppColors.neutral500,
       fontSize: FontSize.s16,
@@ -163,23 +165,23 @@ ThemeData lightTheme = ThemeData(
       color: AppColors.error,
     ),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(RadiusSize.r4),
+      borderRadius: BorderRadius.circular(RadiusSize.r16),
       borderSide: const BorderSide(color: AppColors.neutral300),
     ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(RadiusSize.r4),
-      borderSide: const BorderSide(color: AppColors.grey),
+      borderRadius: BorderRadius.circular(RadiusSize.r16),
+      borderSide: const BorderSide(color: AppColors.neutral300),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(RadiusSize.r4),
+      borderRadius: BorderRadius.circular(RadiusSize.r16),
       borderSide: const BorderSide(color: AppColors.primary, width: AppSize.s2),
     ),
     errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(RadiusSize.r4),
+      borderRadius: BorderRadius.circular(RadiusSize.r16),
       borderSide: const BorderSide(color: AppColors.error),
     ),
     focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(RadiusSize.r4),
+      borderRadius: BorderRadius.circular(RadiusSize.r16),
       borderSide: const BorderSide(color: AppColors.error, width: AppSize.s2),
     ),
 

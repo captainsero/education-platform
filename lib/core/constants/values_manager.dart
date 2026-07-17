@@ -66,15 +66,6 @@ abstract class RadiusSize {
 abstract class AppConstants {}
 
 abstract class AssetsConst {
-  static const String exploreIcon = 'assets/icons/home.svg';
-  static const String smartCoachIcon = 'assets/icons/chat ai.svg';
-  static const String workoutsIcon = 'assets/icons/gym.svg';
-  static const String profileIcon = 'assets/icons/profile.svg';
-
   //login
   static const String logo = 'assets/images/logo.png';
-  static const String googleIcon = 'assets/images/Google.png';
-  static const String appleIcon = 'assets/images/Apple.png';
-  static const String facebookIcon = 'assets/images/facebook circle.png';
-  static const String loginBackground = 'assets/images/Login.png';
 }
