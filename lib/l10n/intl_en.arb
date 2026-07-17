@@ -25,5 +25,10 @@
     "invalidIdNumber": "Enter a valid 14-digit ID number",
     "error": "Error",
     "oopsSomthingWentWrong": "Oops! Something went wrong.",
-    "goToHome": "goToHome"
+    "goToHome": "goToHome",
+    "welcomeBack": "Welcome Back",
+    "signInToManageYourClasses": "Sign in to manage your classes",
+    "email": "Email",
+    "password": "Password",
+    "singIn": "Sign in"
 }
