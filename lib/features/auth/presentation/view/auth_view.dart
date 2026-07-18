@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/screen_size.dart';
 import '../../../../core/constants/values_manager.dart';
+import '../../../../core/router/route_path.dart';
 import '../../../../generated/l10n.dart';
 import '../view_model/auth_cubit.dart';
 import '../view_model/auth_event.dart';
@@ -17,12 +19,11 @@ class AuthView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      appBar: AppBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: .spaceBetween,
           children: [
+            const Spacer(),
             Column(
               children: [
                 ClipRRect(
@@ -54,11 +55,13 @@ class AuthView extends StatelessWidget {
               ],
             ),
 
+            const Spacer(),
+
             Container(
               height: ScreenSize.height / 1.5,
               width: .infinity,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(RadiusSize.r16),
                   topRight: Radius.circular(RadiusSize.r16),
@@ -125,11 +128,7 @@ class AuthView extends StatelessWidget {
                             previous.signInState != current.signInState,
                         listener: (context, state) {
                           if (state.signInState.data != null) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Sign in successfully'),
-                              ),
-                            );
+                            context.go(RoutePath.dashboardRoute);
                           }
 
                           if (state.signInState.errorMessage != null) {

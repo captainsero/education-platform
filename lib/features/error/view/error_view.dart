@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/constants/values_manager.dart';
-import '../../../../core/router/route_path.dart';
-import '../../../../generated/l10n.dart';
+import '../../../../../core/constants/values_manager.dart';
+import '../../../../../core/router/route_path.dart';
+import '../../../../../generated/l10n.dart';
 
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({required this.errorMessage, super.key});
@@ -48,8 +48,7 @@ class ErrorScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // TODO(dev): change this to home Screen
-                    context.go(RoutePath.placeHolderRoute);
+                    context.go(RoutePath.dashboardRoute);
                   },
                   child: Text(S.current.goToHome),
                 ),
