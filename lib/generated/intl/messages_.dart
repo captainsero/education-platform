@@ -28,6 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please confirm your password"),
         "connectionTimeout": MessageLookupByLibrary.simpleMessage(
             "Request timed out. Please check your internet connection."),
+        "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailIsRequired":
             MessageLookupByLibrary.simpleMessage("Email is required"),
         "enterValidEgyptianPhoneNumber": MessageLookupByLibrary.simpleMessage(
@@ -40,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorMessageGeneric": MessageLookupByLibrary.simpleMessage(
             "Something went wrong. Please try again."),
         "goToHome": MessageLookupByLibrary.simpleMessage("goToHome"),
+        "groups": MessageLookupByLibrary.simpleMessage("Groups"),
         "idNumberRequired":
             MessageLookupByLibrary.simpleMessage("ID number is required"),
         "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
@@ -57,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Only letters allowed"),
         "oopsSomthingWentWrong":
             MessageLookupByLibrary.simpleMessage("Oops! Something went wrong."),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
         "paswordNotMatched":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "permissionDenied":
@@ -65,11 +69,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Permission denied forever"),
         "requestTimeout": MessageLookupByLibrary.simpleMessage(
             "Request timed out. Please try again."),
+        "scanner": MessageLookupByLibrary.simpleMessage("Scanner"),
+        "schedule": MessageLookupByLibrary.simpleMessage("Schedule"),
         "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to save information securely. Please try again."),
         "serverError": MessageLookupByLibrary.simpleMessage(
             "Server error. Please try again later."),
         "serviceDisabled":
-            MessageLookupByLibrary.simpleMessage("Service disabled")
+            MessageLookupByLibrary.simpleMessage("Service disabled"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "signInToManageYourClasses": MessageLookupByLibrary.simpleMessage(
+            "Sign in to manage your classes"),
+        "singIn": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back")
       };
 }

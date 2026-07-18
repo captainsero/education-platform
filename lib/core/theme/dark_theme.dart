@@ -8,21 +8,24 @@ import '../constants/values_manager.dart';
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
 
-  scaffoldBackgroundColor: AppColors.backgroundDark,
+  scaffoldBackgroundColor: AppColors.primaryDark4,
 
   colorScheme: const ColorScheme(
     brightness: Brightness.dark,
     primary: AppColors.primary,
     onPrimary: AppColors.white,
 
-    secondary: AppColors.primaryLight2,
-    onSecondary: AppColors.white,
+    secondary: AppColors.secondary,
+    onSecondary: AppColors.black,
 
     error: AppColors.error,
     onError: AppColors.white,
 
     surface: AppColors.neutral900,
     onSurface: AppColors.white,
+
+    tertiary: AppColors.white,
+    onTertiary: AppColors.neutral900,
   ),
 
   textTheme: TextTheme(
@@ -118,7 +121,7 @@ ThemeData darkTheme = ThemeData(
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.primaryDark1,
       foregroundColor: AppColors.white,
       disabledBackgroundColor: AppColors.neutral800,
       disabledForegroundColor: AppColors.neutral500,
@@ -135,10 +138,10 @@ ThemeData darkTheme = ThemeData(
   ),
 
   inputDecorationTheme: InputDecorationTheme(
-    filled: true,
-    fillColor: AppColors.white,
+    // filled: true,
+    // fillColor: AppColors.white,
     hintStyle: const TextStyle(
-      color: AppColors.neutral500,
+      color: AppColors.neutral300,
       fontSize: FontSize.s16,
       fontFamily: FontConstants.balooThambi2,
     ),
@@ -150,7 +153,7 @@ ThemeData darkTheme = ThemeData(
     ),
     floatingLabelStyle: getRegularStyle(
       fontFamily: FontConstants.balooThambi2,
-      color: AppColors.primary,
+      color: AppColors.white,
       fontSize: FontSize.s18,
     ),
     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -160,15 +163,18 @@ ThemeData darkTheme = ThemeData(
     ),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(RadiusSize.r16),
-      borderSide: const BorderSide(color: AppColors.neutral800),
+      borderSide: const BorderSide(color: AppColors.neutral300),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(RadiusSize.r16),
-      borderSide: const BorderSide(color: AppColors.neutral800),
+      borderSide: const BorderSide(color: AppColors.neutral300),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(RadiusSize.r16),
-      borderSide: const BorderSide(color: AppColors.primary, width: AppSize.s2),
+      borderSide: const BorderSide(
+        color: AppColors.secondary,
+        width: AppSize.s2,
+      ),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(RadiusSize.r16),
@@ -182,7 +188,7 @@ ThemeData darkTheme = ThemeData(
   ),
 
   progressIndicatorTheme: ProgressIndicatorThemeData(
-    color: AppColors.primary,
+    color: AppColors.white,
     linearTrackColor: AppColors.neutral800,
     borderRadius: BorderRadius.circular(RadiusSize.r8),
   ),
@@ -230,5 +236,24 @@ ThemeData darkTheme = ThemeData(
     ),
     checkColor: WidgetStateProperty.all(AppColors.white),
     side: const BorderSide(color: AppColors.neutral500),
+  ),
+
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: AppColors.primaryLight5,
+    selectedLabelStyle: getMediumStyle(
+      fontFamily: FontConstants.balooThambi2,
+      color: AppColors.primary,
+      fontSize: FontSize.s16,
+    ),
+    selectedItemColor: AppColors.primary,
+    unselectedItemColor: AppColors.black,
+    selectedIconTheme: const IconThemeData(color: AppColors.primary),
+    unselectedIconTheme: const IconThemeData(color: AppColors.black),
+    showUnselectedLabels: false,
+    unselectedLabelStyle: getMediumStyle(
+      fontFamily: FontConstants.balooThambi2,
+      color: AppColors.black,
+      fontSize: FontSize.s14,
+    ),
   ),
 );

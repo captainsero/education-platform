@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import '../../generated/l10n.dart';
 import '../constants/values_manager.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -15,7 +15,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadiusGeometry.circular(RadiusSize.r20),
+      borderRadius: const BorderRadiusGeometry.only(
+        topLeft: Radius.circular(RadiusSize.r16),
+        topRight: Radius.circular(RadiusSize.r16),
+      ),
       child: BottomNavigationBar(
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
@@ -25,50 +28,42 @@ class CustomBottomNavigationBar extends StatelessWidget {
         onTap: onTap,
         items: [
           _buildNavItem(
-            context,
-            assetPath: AssetsConst.exploreIcon,
-            label: 'Explore',
+            label: S.current.dashboard,
+            icon: Icons.home_outlined,
           ),
           _buildNavItem(
-            context,
-            assetPath: AssetsConst.smartCoachIcon,
-            label: 'Smart Coach',
+            label: S.current.groups,
+            icon: Icons.groups_outlined,
           ),
           _buildNavItem(
-            context,
-            assetPath: AssetsConst.workoutsIcon,
-            label: 'Workouts',
+            label: S.current.scanner,
+            icon: Icons.qr_code_scanner_outlined,
           ),
           _buildNavItem(
-            context,
-            assetPath: AssetsConst.profileIcon,
-            label: 'Profile',
+            label: S.current.schedule,
+            icon: Icons.date_range_outlined,
+          ),
+          _buildNavItem(
+            label: S.current.settings,
+            icon: Icons.settings_outlined,
           ),
         ],
       ),
     );
   }
 
-  BottomNavigationBarItem _buildNavItem(
-    BuildContext context, {
-    required String assetPath,
+  BottomNavigationBarItem _buildNavItem({
     required String label,
+    required IconData icon,
   }) {
     return BottomNavigationBarItem(
-      activeIcon: SvgPicture.asset(
-        assetPath,
-        colorFilter: ColorFilter.mode(
-          Theme.of(context).colorScheme.primary,
-          BlendMode.srcIn,
-        ),
+      activeIcon: Icon(
+        icon,
       ),
-      icon: SvgPicture.asset(
-        assetPath,
-        colorFilter: ColorFilter.mode(
-          Theme.of(context).colorScheme.onPrimary,
-          BlendMode.srcIn,
-        ),
+      icon: Icon(
+        icon,
       ),
+
       label: label,
     );
   }

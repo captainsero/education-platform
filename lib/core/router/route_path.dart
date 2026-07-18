@@ -1,8 +1,9 @@
 abstract class RoutePath {
   static const String placeHolderRoute = '/';
-  static const String exploreRoute = '/explore';
-  static const String smartCouchRoute = '/smartCouch';
-  static const String workoutsRoute = '/workouts';
-  static const String profileRoute = '/profile';
+  static const String dashboardRoute = '/dashboard';
+  static const String groupsRoute = '/groups';
+  static const String scannerRoute = '/scanner';
+  static const String scheduleRoute = '/schedule';
+  static const String settingsRoute = '/settings';
   static const String loginRoute = '/login';
 }

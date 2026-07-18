@@ -309,6 +309,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Welcome Back`
+  String get welcomeBack {
+    return Intl.message(
+      'Welcome Back',
+      name: 'welcomeBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in to manage your classes`
+  String get signInToManageYourClasses {
+    return Intl.message(
+      'Sign in to manage your classes',
+      name: 'signInToManageYourClasses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in`
+  String get singIn {
+    return Intl.message(
+      'Sign in',
+      name: 'singIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dashboard`
+  String get dashboard {
+    return Intl.message(
+      'Dashboard',
+      name: 'dashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Groups`
+  String get groups {
+    return Intl.message(
+      'Groups',
+      name: 'groups',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scanner`
+  String get scanner {
+    return Intl.message(
+      'Scanner',
+      name: 'scanner',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Schedule`
+  String get schedule {
+    return Intl.message(
+      'Schedule',
+      name: 'schedule',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

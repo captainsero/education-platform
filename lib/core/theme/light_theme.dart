@@ -8,15 +8,15 @@ import '../constants/values_manager.dart';
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
 
-  scaffoldBackgroundColor: AppColors.white,
+  scaffoldBackgroundColor: AppColors.primary,
 
   colorScheme: const ColorScheme(
     brightness: Brightness.light,
     primary: AppColors.primary,
     onPrimary: AppColors.white,
 
-    secondary: AppColors.primaryLight2,
-    onSecondary: AppColors.white,
+    secondary: AppColors.secondary,
+    onSecondary: AppColors.black,
 
     error: AppColors.error,
     onError: AppColors.white,
@@ -189,7 +189,7 @@ ThemeData lightTheme = ThemeData(
   ),
 
   progressIndicatorTheme: ProgressIndicatorThemeData(
-    color: AppColors.primary,
+    color: AppColors.secondaryLight,
     linearTrackColor: AppColors.neutral200,
     borderRadius: BorderRadius.circular(RadiusSize.r8),
   ),
@@ -234,6 +234,25 @@ ThemeData lightTheme = ThemeData(
       (states) => states.contains(WidgetState.selected)
           ? AppColors.primary
           : AppColors.white,
+    ),
+  ),
+
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: AppColors.primaryLight4,
+    selectedLabelStyle: getMediumStyle(
+      fontFamily: FontConstants.balooThambi2,
+      color: AppColors.primary,
+      fontSize: FontSize.s16,
+    ),
+    selectedItemColor: AppColors.primary,
+    unselectedItemColor: AppColors.white,
+    selectedIconTheme: const IconThemeData(color: AppColors.primary),
+    unselectedIconTheme: const IconThemeData(color: AppColors.white),
+    showUnselectedLabels: false,
+    unselectedLabelStyle: getMediumStyle(
+      fontFamily: FontConstants.balooThambi2,
+      color: AppColors.white,
+      fontSize: FontSize.s14,
     ),
   ),
 );

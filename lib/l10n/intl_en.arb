@@ -30,5 +30,10 @@
     "signInToManageYourClasses": "Sign in to manage your classes",
     "email": "Email",
     "password": "Password",
-    "singIn": "Sign in"
+    "singIn": "Sign in",
+    "dashboard": "Dashboard",
+    "groups": "Groups",
+    "scanner": "Scanner",
+    "schedule": "Schedule",
+    "settings": "Settings"
 }
