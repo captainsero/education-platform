@@ -1,4 +1,3 @@
-// features/group/data/models/schedule_model.dart
 class ScheduleModel {
   ScheduleModel({
     required this.id,

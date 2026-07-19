@@ -1,1 +1,3 @@
-// TODO: GroupsEvent
+sealed class GroupsEvent {}
+
+class GetGroupsEvent extends GroupsEvent {}

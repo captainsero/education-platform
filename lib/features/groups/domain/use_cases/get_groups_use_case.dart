@@ -10,6 +10,6 @@ class GetGroupsUseCase {
 
   final GroupsRepoContract repoContract;
 
-  Future<BaseResponse<List<GroupEntity>>> getGroups() =>
+  Future<BaseResponse<List<GroupEntity>>> call() =>
       repoContract.getGroups();
 }
