@@ -24,7 +24,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Theme.of(context).colorScheme.primary,
         backgroundColor: Theme.of(context).colorScheme.tertiary.withAlpha(220),
-        unselectedItemColor: Theme.of(context).colorScheme.onPrimary,
+        unselectedItemColor: Theme.of(context).colorScheme.surface,
         onTap: onTap,
         items: [
           _buildNavItem(

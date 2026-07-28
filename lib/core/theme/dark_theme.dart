@@ -9,6 +9,9 @@ ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
 
   scaffoldBackgroundColor: AppColors.primaryDark4,
+  primaryColor: AppColors.primary,
+  primaryColorDark: AppColors.primaryDark1,
+  primaryColorLight: AppColors.primaryLight1,
 
   colorScheme: const ColorScheme(
     brightness: Brightness.dark,
@@ -111,11 +114,11 @@ ThemeData darkTheme = ThemeData(
     elevation: 0,
     leadingWidth: AppSize.s25,
     actionsPadding: const EdgeInsets.only(right: AppPadding.p20),
-    titleSpacing: AppSize.s0,
+    titleSpacing: AppSize.s16,
     titleTextStyle: getRegularStyle(
       fontFamily: FontConstants.balooThambi2,
       color: AppColors.white,
-      fontSize: FontSize.s20,
+      fontSize: FontSize.s25,
     ),
   ),
 
@@ -254,6 +257,23 @@ ThemeData darkTheme = ThemeData(
       fontFamily: FontConstants.balooThambi2,
       color: AppColors.black,
       fontSize: FontSize.s14,
+    ),
+  ),
+
+  searchBarTheme: SearchBarThemeData(
+    elevation: const WidgetStatePropertyAll(AppSize.s0),
+    backgroundColor: const WidgetStatePropertyAll(AppColors.transparent),
+    side: const WidgetStatePropertyAll(BorderSide(color: AppColors.white)),
+    shape: WidgetStatePropertyAll(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppPadding.p16),
+      ),
+    ),
+    textStyle: WidgetStatePropertyAll(
+      getSemiBoldStyle(
+        fontFamily: FontConstants.balooThambi2,
+        color: AppColors.white,
+      ),
     ),
   ),
 );

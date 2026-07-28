@@ -8,7 +8,10 @@ import '../constants/values_manager.dart';
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
 
-  scaffoldBackgroundColor: AppColors.primary,
+  scaffoldBackgroundColor: AppColors.white,
+  primaryColor: AppColors.primary,
+  primaryColorDark: AppColors.primaryDark1,
+  primaryColorLight: AppColors.primaryLight1,
 
   colorScheme: const ColorScheme(
     brightness: Brightness.light,
@@ -114,11 +117,11 @@ ThemeData lightTheme = ThemeData(
     titleTextStyle: getRegularStyle(
       fontFamily: FontConstants.balooThambi2,
       color: AppColors.black,
-      fontSize: FontSize.s20,
+      fontSize: FontSize.s25,
     ),
     leadingWidth: AppSize.s25,
     actionsPadding: const EdgeInsets.only(right: AppPadding.p20),
-    titleSpacing: AppSize.s0,
+    titleSpacing: AppSize.s16,
     elevation: 0,
   ),
 
@@ -253,6 +256,23 @@ ThemeData lightTheme = ThemeData(
       fontFamily: FontConstants.balooThambi2,
       color: AppColors.white,
       fontSize: FontSize.s14,
+    ),
+  ),
+
+  searchBarTheme: SearchBarThemeData(
+    elevation: const WidgetStatePropertyAll(AppSize.s0),
+    backgroundColor: const WidgetStatePropertyAll(AppColors.transparent),
+    side: const WidgetStatePropertyAll(BorderSide(color: AppColors.lightGrey)),
+    shape: WidgetStatePropertyAll(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppPadding.p16),
+      ),
+    ),
+    textStyle: WidgetStatePropertyAll(
+      getRegularStyle(
+        fontFamily: FontConstants.balooThambi2,
+        color: AppColors.grey,
+      ),
     ),
   ),
 );

@@ -50,7 +50,7 @@ void main() {
         );
 
         // act
-        final result = await useCase.getGroups();
+        final result = await useCase();
 
         // assert
         expect(result, isA<SuccessBaseResponse<List<GroupEntity>>>());
@@ -74,7 +74,7 @@ void main() {
         );
 
         // act
-        final result = await useCase.getGroups();
+        final result = await useCase();
 
         // assert
         expect(result, isA<ErrorBaseResponse<List<GroupEntity>>>());
@@ -97,7 +97,7 @@ void main() {
         );
 
         // act
-        final result = await useCase.getGroups();
+        final result = await useCase();
 
         // assert
         expect(result, isA<SuccessBaseResponse<List<GroupEntity>>>());

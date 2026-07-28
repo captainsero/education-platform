@@ -6,6 +6,8 @@ import '../../features/auth/presentation/view_model/auth_cubit.dart';
 import '../../features/dashboard/presentation/view/dashboard_view.dart';
 import '../../features/error/view/error_view.dart';
 import '../../features/groups/presentation/view/groups_view.dart';
+import '../../features/groups/presentation/view_model/groups_cubit.dart';
+import '../../features/groups/presentation/view_model/groups_event.dart';
 import '../../features/main/main_view.dart';
 import '../../features/scanner/presentation/view/scanner_view.dart';
 import '../../features/schedule/presentation/view/schedule_view.dart';
@@ -41,7 +43,11 @@ abstract class AppRouter {
             routes: [
               GoRoute(
                 path: RoutePath.groupsRoute,
-                builder: (context, state) => const GroupsView(),
+                builder: (context, state) => BlocProvider(
+                  create: (context) => getIt.get<GroupsCubit>()
+                    ..onEvent(GetGroupsEvent()),
+                  child: const GroupsView(),
+                ),
               ),
             ],
           ),
