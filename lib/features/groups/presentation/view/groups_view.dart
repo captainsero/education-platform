@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/values_manager.dart';
+import '../../../../generated/l10n.dart';
 import '../view_model/groups_cubit.dart';
 import '../view_model/groups_event.dart';
 import '../view_model/groups_state.dart';
@@ -15,7 +16,7 @@ class GroupsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My groups'),
+        title: Text(S.current.myGroups),
         actions: [
           SizedBox(
             width: AppSize.s50,
@@ -34,7 +35,7 @@ class GroupsView extends StatelessWidget {
             spacing: AppSize.s20,
             children: [
               SearchBar(
-                hintText: 'Search groups...',
+                hintText: S.current.searchGroups,
                 leading: const Icon(Icons.search_outlined),
                 onChanged: (query) async {
                   await context.read<GroupsCubit>().onEvent(
@@ -80,7 +81,7 @@ class GroupsView extends StatelessWidget {
                               ).colorScheme.onSurface.withAlpha(100),
                             ),
                             Text(
-                              'No groups yet',
+                              S.current.noGroupsYet,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                           ],
@@ -106,7 +107,7 @@ class GroupsView extends StatelessWidget {
                               ).colorScheme.onSurface.withAlpha(100),
                             ),
                             Text(
-                              'No groups match your search',
+                              S.current.noGroupMatchYourSearch,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                           ],

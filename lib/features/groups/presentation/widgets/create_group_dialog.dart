@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/values_manager.dart';
+import '../../../../generated/l10n.dart';
 import '../view_model/groups_cubit.dart';
 import '../view_model/groups_event.dart';
 import '../view_model/groups_state.dart';
@@ -19,14 +20,14 @@ class CreateGroupDialog extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController nameController;
 
-  static const _dayLabels = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
+  static final List<String> _dayLabels = [
+    S.current.sunday,
+    S.current.mondey,
+    S.current.tuesday,
+    S.current.wednesday,
+    S.current.thursday,
+    S.current.friday,
+    S.current.saturday,
   ];
 
   /// Opens the dialog, resetting the form state beforehand.
@@ -57,7 +58,7 @@ class CreateGroupDialog extends StatelessWidget {
 
     if (!cubit.state.hasSelectedDays) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please select at least one day')),
+        SnackBar(content: Text(S.current.pleaseSelectAtLeastOneDay)),
       );
       return;
     }
@@ -88,7 +89,7 @@ class CreateGroupDialog extends StatelessWidget {
         if (createState.data != null) {
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Group created successfully')),
+            SnackBar(content: Text(S.current.groupCreatedSuccessfully)),
           );
           unawaited(context.read<GroupsCubit>().onEvent(GetGroupsEvent()));
         }
@@ -140,7 +141,7 @@ class CreateGroupDialog extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Text('Create New Group', style: textTheme.titleLarge),
+            child: Text(S.current.createNewGroup, style: textTheme.titleLarge),
           ),
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -167,14 +168,14 @@ class CreateGroupDialog extends StatelessWidget {
             // Group name field
             TextFormField(
               controller: nameController,
-              decoration: const InputDecoration(
-                labelText: 'Group name',
-                hintText: 'e.g. Grade 10 – Physics',
+              decoration: InputDecoration(
+                labelText: S.current.groupName,
+                hintText: S.current.groupNameHint,
               ),
               textInputAction: TextInputAction.done,
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Please enter a group name';
+                  return S.current.pleaseEnterAGroupName;
                 }
                 return null;
               },
@@ -182,10 +183,10 @@ class CreateGroupDialog extends StatelessWidget {
             const SizedBox(height: AppSize.s24),
 
             // Schedule heading
-            Text('Schedule', style: textTheme.titleMedium),
+            Text(S.current.schedule, style: textTheme.titleMedium),
             const SizedBox(height: AppSize.s4),
             Text(
-              'Select the days and set time for each',
+              S.current.selectTheDaysAndSetTimeForEach,
               style: textTheme.bodySmall?.copyWith(
                 color: colorScheme.onSurface.withAlpha(150),
               ),
@@ -233,9 +234,8 @@ class CreateGroupDialog extends StatelessWidget {
             spacing: AppSize.s12,
             children: [
               TextButton(
-                onPressed:
-                    isLoading ? null : () => Navigator.of(context).pop(),
-                child: const Text('Cancel'),
+                onPressed: isLoading ? null : () => Navigator.of(context).pop(),
+                child: Text(S.current.cancel),
               ),
               FilledButton(
                 onPressed: isLoading ? null : () => _submit(context),
@@ -245,7 +245,7 @@ class CreateGroupDialog extends StatelessWidget {
                         height: AppSize.s20,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Create'),
+                    :  Text(S.current.create),
               ),
             ],
           );

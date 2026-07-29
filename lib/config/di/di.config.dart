@@ -92,6 +92,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i131.SignOutUseCase>(
       () => _i131.SignOutUseCase(repoContract: gh<_i990.AuthRepoContract>()),
     );
+    gh.factory<_i943.CreateGroupWithScheduleUseCase>(
+      () => _i943.CreateGroupWithScheduleUseCase(
+        repoContract: gh<_i405.GroupsRepoContract>(),
+      ),
+    );
     gh.factory<_i946.GetGroupsUseCase>(
       () =>
           _i946.GetGroupsUseCase(repoContract: gh<_i405.GroupsRepoContract>()),

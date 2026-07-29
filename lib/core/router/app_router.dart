@@ -16,7 +16,7 @@ import 'route_path.dart';
 
 abstract class AppRouter {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.loginRoute,
+    initialLocation: RoutePath.groupsRoute,
     routes: [
       GoRoute(
         path: RoutePath.loginRoute,

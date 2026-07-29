@@ -409,6 +409,256 @@ class S {
       args: [],
     );
   }
+
+  /// `My Groups`
+  String get myGroups {
+    return Intl.message(
+      'My Groups',
+      name: 'myGroups',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search groups...`
+  String get searchGroups {
+    return Intl.message(
+      'Search groups...',
+      name: 'searchGroups',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No gorups yet`
+  String get noGroupsYet {
+    return Intl.message(
+      'No gorups yet',
+      name: 'noGroupsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No groups match your search`
+  String get noGroupMatchYourSearch {
+    return Intl.message(
+      'No groups match your search',
+      name: 'noGroupMatchYourSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sunday`
+  String get sunday {
+    return Intl.message(
+      'Sunday',
+      name: 'sunday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mondey`
+  String get mondey {
+    return Intl.message(
+      'Mondey',
+      name: 'mondey',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tuesday`
+  String get tuesday {
+    return Intl.message(
+      'Tuesday',
+      name: 'tuesday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wednesday`
+  String get wednesday {
+    return Intl.message(
+      'Wednesday',
+      name: 'wednesday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thuresday`
+  String get thursday {
+    return Intl.message(
+      'Thuresday',
+      name: 'thursday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Friday`
+  String get friday {
+    return Intl.message(
+      'Friday',
+      name: 'friday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saturday`
+  String get saturday {
+    return Intl.message(
+      'Saturday',
+      name: 'saturday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select at least one day`
+  String get pleaseSelectAtLeastOneDay {
+    return Intl.message(
+      'Please select at least one day',
+      name: 'pleaseSelectAtLeastOneDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Group created successfully`
+  String get groupCreatedSuccessfully {
+    return Intl.message(
+      'Group created successfully',
+      name: 'groupCreatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create New Group`
+  String get createNewGroup {
+    return Intl.message(
+      'Create New Group',
+      name: 'createNewGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Group name`
+  String get groupName {
+    return Intl.message(
+      'Group name',
+      name: 'groupName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Grade 10 – Physics`
+  String get groupNameHint {
+    return Intl.message(
+      'e.g. Grade 10 – Physics',
+      name: 'groupNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a group name`
+  String get pleaseEnterAGroupName {
+    return Intl.message(
+      'Please enter a group name',
+      name: 'pleaseEnterAGroupName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the days and set time for each`
+  String get selectTheDaysAndSetTimeForEach {
+    return Intl.message(
+      'Select the days and set time for each',
+      name: 'selectTheDaysAndSetTimeForEach',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get create {
+    return Intl.message(
+      'Create',
+      name: 'create',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start`
+  String get start {
+    return Intl.message(
+      'Start',
+      name: 'start',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End`
+  String get end {
+    return Intl.message(
+      'End',
+      name: 'end',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Students`
+  String get studnets {
+    return Intl.message(
+      'Students',
+      name: 'studnets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No schedule`
+  String get noSchedule {
+    return Intl.message(
+      'No schedule',
+      name: 'noSchedule',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

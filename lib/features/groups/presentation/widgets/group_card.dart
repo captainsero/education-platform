@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/values_manager.dart';
+import '../../../../generated/l10n.dart';
 import '../../domain/entities/group_entity.dart';
 import 'group_container_icon_and_text.dart';
 import 'group_schedule_container.dart';
@@ -34,7 +35,7 @@ class GroupCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           GroupContainerIconAndText(
-            title: '${group.studentCount} Students',
+            title: '${group.studentCount} ${S.current.studnets}',
             icon: Icons.group_outlined,
           ),
           GroupContainerIconAndText(
@@ -49,7 +50,7 @@ class GroupCard extends StatelessWidget {
   }
 
   String _formatScheduleDays(GroupEntity group) {
-    if (group.schedules.isEmpty) return 'No schedule';
+    if (group.schedules.isEmpty) return S.current.noSchedule;
 
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     final days = group.schedules.map((s) => dayNames[s.dayOfWeek]).toList();

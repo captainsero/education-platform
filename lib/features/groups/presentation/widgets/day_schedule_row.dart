@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/values_manager.dart';
 import '../../../../core/utils/time_picker_service.dart';
+import '../../../../generated/l10n.dart';
 import '../view_model/groups_cubit.dart';
 import '../view_model/groups_event.dart';
 import '../view_model/groups_state.dart';
@@ -30,8 +31,8 @@ class DayScheduleRow extends StatelessWidget {
     );
     if (time != null && context.mounted) {
       await context.read<GroupsCubit>().onEvent(
-            UpdateDayStartTimeEvent(dayIndex: dayIndex, time: time),
-          );
+        UpdateDayStartTimeEvent(dayIndex: dayIndex, time: time),
+      );
     }
   }
 
@@ -42,8 +43,8 @@ class DayScheduleRow extends StatelessWidget {
     );
     if (time != null && context.mounted) {
       await context.read<GroupsCubit>().onEvent(
-            UpdateDayEndTimeEvent(dayIndex: dayIndex, time: time),
-          );
+        UpdateDayEndTimeEvent(dayIndex: dayIndex, time: time),
+      );
     }
   }
 
@@ -57,9 +58,9 @@ class DayScheduleRow extends StatelessWidget {
         // Day toggle
         InkWell(
           borderRadius: BorderRadius.circular(RadiusSize.r12),
-          onTap: () => context
-              .read<GroupsCubit>()
-              .onEvent(ToggleDayEvent(dayIndex: dayIndex)),
+          onTap: () => context.read<GroupsCubit>().onEvent(
+            ToggleDayEvent(dayIndex: dayIndex),
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               vertical: AppPadding.p10,
@@ -69,9 +70,9 @@ class DayScheduleRow extends StatelessWidget {
               children: [
                 Checkbox(
                   value: slot.isSelected,
-                  onChanged: (_) => context
-                      .read<GroupsCubit>()
-                      .onEvent(ToggleDayEvent(dayIndex: dayIndex)),
+                  onChanged: (_) => context.read<GroupsCubit>().onEvent(
+                    ToggleDayEvent(dayIndex: dayIndex),
+                  ),
                 ),
                 const SizedBox(width: AppSize.s8),
                 Expanded(
@@ -100,7 +101,7 @@ class DayScheduleRow extends StatelessWidget {
               children: [
                 Expanded(
                   child: TimePickerTile(
-                    label: 'Start',
+                    label: S.current.start,
                     displayTime: TimePickerService.formatForDisplay(
                       context,
                       slot.startTime,
@@ -111,7 +112,7 @@ class DayScheduleRow extends StatelessWidget {
                 const SizedBox(width: AppSize.s12),
                 Expanded(
                   child: TimePickerTile(
-                    label: 'End',
+                    label: S.current.end,
                     displayTime: TimePickerService.formatForDisplay(
                       context,
                       slot.endTime,

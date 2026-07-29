@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/values_manager.dart';
+import '../../../../generated/l10n.dart';
 import '../view_model/groups_cubit.dart';
 import '../view_model/groups_event.dart';
 
@@ -39,7 +40,7 @@ class GroupErrorWidget extends StatelessWidget {
               );
             },
             icon: const Icon(Icons.refresh),
-            label: const Text('Retry'),
+            label: Text(S.current.retry),
           ),
         ],
       ),
