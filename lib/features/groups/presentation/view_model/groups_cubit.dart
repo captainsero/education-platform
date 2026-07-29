@@ -40,8 +40,18 @@ class GroupsCubit extends Cubit<GroupsState> {
         await _createGroupWithSchedule(name: event.name, slots: event.slots);
       case SearchGroupsEvent(:final query):
         _searchGroups(query);
+      case ToggleDayEvent():
+        _toggleDay(event.dayIndex);
+      case UpdateDayStartTimeEvent():
+        _updateDayStartTime(event.dayIndex, event.time);
+      case UpdateDayEndTimeEvent():
+        _updateDayEndTime(event.dayIndex, event.time);
+      case ResetCreateGroupFormEvent():
+        _resetForm();
     }
   }
+
+  // ── Groups list ──────────────────────────────────────────────────────
 
   Future<void> _getGroups() async {
     emit(state.copyWith(getGroupsState: const BaseState(isLoading: true)));
@@ -55,6 +65,8 @@ class GroupsCubit extends Cubit<GroupsState> {
   void _searchGroups(String query) {
     emit(state.copyWith(searchQuery: query));
   }
+
+  // ── Create group ─────────────────────────────────────────────────────
 
   Future<void> _createGroupWithSchedule({
     required String name,
@@ -73,5 +85,57 @@ class GroupsCubit extends Cubit<GroupsState> {
     final handler = ResponseToStateMapper.handle(response);
 
     emit(state.copyWith(createGroupWithScheduleState: handler));
+  }
+
+  // ── Dialog form helpers ──────────────────────────────────────────────
+
+  void _toggleDay(int dayIndex) {
+    final current = state.daySlots[dayIndex] ?? const DaySlotState();
+    final updated = Map<int, DaySlotState>.from(state.daySlots);
+    updated[dayIndex] = current.copyWith(isSelected: !current.isSelected);
+    emit(state.copyWith(daySlots: updated));
+  }
+
+  void _updateDayStartTime(int dayIndex, String time) {
+    final current = state.daySlots[dayIndex] ?? const DaySlotState();
+    final updated = Map<int, DaySlotState>.from(state.daySlots);
+    updated[dayIndex] = current.copyWith(startTime: time);
+    emit(state.copyWith(daySlots: updated));
+  }
+
+  void _updateDayEndTime(int dayIndex, String time) {
+    final current = state.daySlots[dayIndex] ?? const DaySlotState();
+    final updated = Map<int, DaySlotState>.from(state.daySlots);
+    updated[dayIndex] = current.copyWith(endTime: time);
+    emit(state.copyWith(daySlots: updated));
+  }
+
+  void _resetForm() {
+    emit(state.copyWith(
+      createGroupWithScheduleState: const BaseState<String>(),
+      daySlots: const {
+        0: DaySlotState(),
+        1: DaySlotState(),
+        2: DaySlotState(),
+        3: DaySlotState(),
+        4: DaySlotState(),
+        5: DaySlotState(),
+        6: DaySlotState(),
+      },
+    ));
+  }
+
+  /// Build [ScheduleSlotInput] list from the currently selected day slots.
+  List<ScheduleSlotInput> buildSlotsFromState() {
+    return state.daySlots.entries
+        .where((e) => e.value.isSelected)
+        .map(
+          (e) => ScheduleSlotInput(
+            dayOfWeek: e.key,
+            startTime: e.value.startTime,
+            endTime: e.value.endTime,
+          ),
+        )
+        .toList();
   }
 }

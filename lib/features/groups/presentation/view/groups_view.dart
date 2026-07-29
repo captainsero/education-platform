@@ -4,6 +4,7 @@ import '../../../../core/constants/values_manager.dart';
 import '../view_model/groups_cubit.dart';
 import '../view_model/groups_event.dart';
 import '../view_model/groups_state.dart';
+import '../widgets/create_group_dialog.dart';
 import '../widgets/group_card.dart';
 import '../widgets/group_error_widget.dart';
 
@@ -20,7 +21,7 @@ class GroupsView extends StatelessWidget {
             width: AppSize.s50,
             height: AppSize.s50,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () => CreateGroupDialog.show(context),
               child: const Icon(Icons.add_outlined),
             ),
           ),
