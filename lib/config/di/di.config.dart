@@ -32,6 +32,8 @@ import '../../features/groups/data/data_sources/groups_remote_data_source_contra
     as _i82;
 import '../../features/groups/data/repo/groups_repo_impl.dart' as _i668;
 import '../../features/groups/domain/repo/groups_repo_contract.dart' as _i405;
+import '../../features/groups/domain/use_cases/create_group_with_schedule_use_case.dart'
+    as _i943;
 import '../../features/groups/domain/use_cases/get_groups_use_case.dart'
     as _i946;
 import '../../features/groups/presentation/view_model/groups_cubit.dart'
@@ -103,7 +105,11 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.factory<_i1052.GroupsCubit>(
-      () => _i1052.GroupsCubit(getGroupsUseCase: gh<_i946.GetGroupsUseCase>()),
+      () => _i1052.GroupsCubit(
+        createGroupWithScheduleUseCase:
+            gh<_i943.CreateGroupWithScheduleUseCase>(),
+        getGroupsUseCase: gh<_i946.GetGroupsUseCase>(),
+      ),
     );
     return this;
   }

@@ -7,6 +7,8 @@ import 'dart:async' as _i3;
 
 import 'package:education_platform/config/base_response/base_response.dart'
     as _i4;
+import 'package:education_platform/features/groups/data/models/schedule_slot_input.dart'
+    as _i7;
 import 'package:education_platform/features/groups/domain/entities/group_entity.dart'
     as _i5;
 import 'package:education_platform/features/groups/domain/repo/groups_repo_contract.dart'
@@ -51,4 +53,26 @@ class MockGroupsRepoContract extends _i1.Mock
                 ),
           )
           as _i3.Future<_i4.BaseResponse<List<_i5.GroupEntity>>>);
+
+  @override
+  _i3.Future<_i4.BaseResponse<String>> createGroupWithSchedule({
+    required String? name,
+    required List<_i7.ScheduleSlotInput>? slots,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#createGroupWithSchedule, [], {
+              #name: name,
+              #slots: slots,
+            }),
+            returnValue: _i3.Future<_i4.BaseResponse<String>>.value(
+              _i6.dummyValue<_i4.BaseResponse<String>>(
+                this,
+                Invocation.method(#createGroupWithSchedule, [], {
+                  #name: name,
+                  #slots: slots,
+                }),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.BaseResponse<String>>);
 }

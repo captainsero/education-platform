@@ -5,6 +5,7 @@ import '../../domain/entities/group_entity.dart';
 import '../../domain/repo/groups_repo_contract.dart';
 import '../data_sources/groups_remote_data_source_contract.dart';
 import '../models/group_model.dart';
+import '../models/schedule_slot_input.dart';
 
 @Injectable(as: GroupsRepoContract)
 class GroupsRepoImpl implements GroupsRepoContract {
@@ -22,5 +23,17 @@ class GroupsRepoImpl implements GroupsRepoContract {
       case ErrorBaseResponse<List<GroupModel>>():
         return ErrorBaseResponse<List<GroupEntity>>(error: response.error);
     }
+  }
+
+  @override
+  Future<BaseResponse<String>> createGroupWithSchedule({
+    required String name,
+    required List<ScheduleSlotInput> slots,
+  }) async {
+    final response = await dataSourceContract.createGroupWithSchedule(
+      name: name,
+      slots: slots,
+    );
+    return response;
   }
 }

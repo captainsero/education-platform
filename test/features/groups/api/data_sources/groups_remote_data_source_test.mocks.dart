@@ -11,6 +11,8 @@ import 'package:education_platform/features/groups/data/data_sources/groups_remo
     as _i2;
 import 'package:education_platform/features/groups/data/models/group_model.dart'
     as _i5;
+import 'package:education_platform/features/groups/data/models/schedule_slot_input.dart'
+    as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
 
@@ -51,4 +53,26 @@ class MockGroupsRemoteDataSourceContract extends _i1.Mock
                 ),
           )
           as _i3.Future<_i4.BaseResponse<List<_i5.GroupModel>>>);
+
+  @override
+  _i3.Future<_i4.BaseResponse<String>> createGroupWithSchedule({
+    required String? name,
+    required List<_i7.ScheduleSlotInput>? slots,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#createGroupWithSchedule, [], {
+              #name: name,
+              #slots: slots,
+            }),
+            returnValue: _i3.Future<_i4.BaseResponse<String>>.value(
+              _i6.dummyValue<_i4.BaseResponse<String>>(
+                this,
+                Invocation.method(#createGroupWithSchedule, [], {
+                  #name: name,
+                  #slots: slots,
+                }),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.BaseResponse<String>>);
 }
